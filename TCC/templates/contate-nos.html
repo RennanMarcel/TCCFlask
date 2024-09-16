@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="cuidando do que é nosso">
-    <title>CSC Junior Letal</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Entre em contato">
+    <title>Contate-nos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/contate-nos.css') }}">
 </head>
 
 <body>
 
 <header> 
-    <a href="../página-principal/index.html" class="aindex">
-    <img src="../Banco de Imagens/logo-removebg-preview.png" alt="Centro Social Comunitário Junior Letal" width="100px">
-    <h2>CSC Junior Letal</h2>
+    <a href="{{ url_for('index') }}" class="aindex">
+        <img src="{{ url_for('static', filename='banco-de-imagens/logo-removebg-preview.png') }}" alt="Centro Social Comunitário Junior Letal" width="100px">
+        <h2>Entre em contato</h2>
     </a>
     <nav>
-    <a class="anav" href="../página-principal/index.html">Página-Principal</a>  
-    <a class="anav" href="../agendamentos/index.html">Agendamentos</a>
-    <a class="pagi" href="../contate-nos/index.html">Fale-Conosco</a>
-    <a class="anav" href="../eventos/index.html">Eventos</a>
+        <a class="anav" href="{{ url_for('index') }}">Página-Principal</a>  
+        <a class="anav" href="{{ url_for('agendamentos') }}">Agendamentos</a>
+        <a class="pagi" href="{{ url_for('fale_conosco') }}">Fale-Conosco</a>
+        <a class="anav" href="{{ url_for('eventos') }}">Eventos</a>
     </nav>
-    </header>    
+ </header>
+   
     <main>
     <section>
             <div class="divmapa">
@@ -33,14 +34,15 @@
             <h2>
                 Fale conosco pelas nossas redes sociais
             </h2>
+            https://www.instagram.com/cscjuniorletal
             <ul>
                 <li class="whatsapp">
-                   <img src="../Banco de Imagens/whatsapp.png" alt="whatsapp"> 
+                   <img src="{{ url_for('static', filename='banco-de-imagens/whatsapp.png') }}" alt="whatsapp"> 
                    <p>(81) 99673-7061</p>
                 </li>
                 <li class="instagram">
-                    <a href="https://www.instagram.com/cscjuniorletal/"><img src="../Banco de Imagens/instagram.png" alt="instagram"></a>
-                    <a href="https://www.instagram.com/cscjuniorletal/"><p>@cscjuniorletal</p></a>     
+                    <a href="{{ url_for('instagram') }}"><img src="{{ url_for('static', filename= 'banco-de-imagens/instagram.png')}}" alt="instagram"></a>
+                    <a href="{{ url_for('instagram') }}"><p>@cscjuniorletal</p></a>     
                 </li>
             </ul>
             <form class="form-email">
