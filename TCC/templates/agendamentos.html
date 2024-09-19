@@ -11,7 +11,7 @@
 <header> 
     <a href="{{ url_for('index') }}" class="aindex">
         <img src="{{ url_for('static', filename='banco-de-imagens/logo-removebg-preview.png') }}" alt="Centro Social Comunitário Junior Letal" width="100px">
-        <h2>Agendamentos</h2>
+        <h2>Agende Sua consulta</h2>
     </a>
     <nav>
         <a class="anav" href="{{ url_for('index') }}">Página-Principal</a>  
@@ -22,13 +22,9 @@
 </header>  
 
 <main>
+    <section class="agendas">
     <section class="agenda">
-        <h2>Agende sua consulta</h2>
-        <p>Teremos horários das nove da manhã até as cinco da tarde</p>
-        <p>Não funcionamos aos finais de semanas e aos feriados</p>
-        <div>
-            <img src="{{ url_for('static', filename='banco-de-imagens/IMG-20230125-WA0053.jpg') }}" alt="Centro Social Comunitário Junior Letal">
-        </div>
+        <h2>Clinico-Geral</h2>
         <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
         <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
         <script>
@@ -45,18 +41,80 @@
         })();
         </script>
     </section>
+    <section class="agenda">
+        <h2>Nutricionista</h2>
+        <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+        <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+        <script>
+        (function() {
+            var target = document.currentScript;
+            window.addEventListener('load', function() {
+                calendar.schedulingButton.load({
+                    url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3plHXqpyTwfF1e4YLDDXvUeoI3vRYt2RvkeUz5LjDrSIQ0ny7PPW9P25qSKfMDJmDdCUxTI5Bc?gv=true',
+                    color: '#7ab7a0',
+                    label: 'Agendar uma consulta',
+                    target,
+                });
+            });
+        })();
+        </script>
+    </section>
+    <section class="agenda">
+        <h2>Fisioterapelta</h2>
+        <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+        <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+        <script>
+        (function() {
+            var target = document.currentScript;
+            window.addEventListener('load', function() {
+                calendar.schedulingButton.load({
+                    url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3plHXqpyTwfF1e4YLDDXvUeoI3vRYt2RvkeUz5LjDrSIQ0ny7PPW9P25qSKfMDJmDdCUxTI5Bc?gv=true',
+                    color: '#7ab7a0',
+                    label: 'Agendar uma consulta',
+                    target,
+                });
+            });
+        })();
+        </script>
+    </section>
+    <section class="agenda">
+        <h2>Dentista</h2>
+        <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+        <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+        <script>
+        (function() {
+            var target = document.currentScript;
+            window.addEventListener('load', function() {
+                calendar.schedulingButton.load({
+                    url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3plHXqpyTwfF1e4YLDDXvUeoI3vRYt2RvkeUz5LjDrSIQ0ny7PPW9P25qSKfMDJmDdCUxTI5Bc?gv=true',
+                    color: '#7ab7a0',
+                    label: 'Agendar uma consulta',
+                    target,
+                });
+            });
+        })();
+        </script>
+    </section>
+    <section class="agenda">
+        <h2>Psicologo</h2>
+        <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+        <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+        <script>
+        (function() {
+            var target = document.currentScript;
+            window.addEventListener('load', function() {
+                calendar.schedulingButton.load({
+                    url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3plHXqpyTwfF1e4YLDDXvUeoI3vRYt2RvkeUz5LjDrSIQ0ny7PPW9P25qSKfMDJmDdCUxTI5Bc?gv=true',
+                    color: '#7ab7a0',
+                    label: 'Agendar uma consulta',
+                    target,
+                });
+            });
+        })();
+        </script>
+    </section>
+</section>
 
-    <aside>
-        <div>
-            <h2>Serviços Oferecidos</h2>
-            <ul>
-                <li>Psicólogo</li>
-                <li>Nutricionista</li>
-                <li>Fisioterapeuta</li>
-                <li>Médico/clínico geral</li>
-            </ul>
-        </div>
-    </aside>
 </main>
 
 <footer>
