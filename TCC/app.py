@@ -14,28 +14,28 @@ def index():
 def agendamentos():
     return render_template('agendamentos.html')
 
-@app.route('/fale_conosco')
-def fale_conosco():
-    return render_template('contate-nos.html')
+@app.route('/eventos', methods=['GET'])
+def list_events():
+    eventos = read_eventos()
+    return render_template('eventos.html', eventos=eventos)
 
-@app.route('/eventos', methods=['GET', 'POST'])
-def eventos():
-    if request.method == 'POST':
-        if 'create' in request.form:
-            if create_event():
-                flash("Evento criado com sucesso!", "success")
-            else:
-                flash("Erro ao criar evento.", "error")
-        elif 'update' in request.form:
-            if update_event():
-                flash("Evento atualizado com sucesso!", "success")
-            else:
-                flash("Erro ao atualizar evento.", "error")
-        elif 'delete' in request.form:
-            if delete_event():
-                flash("Evento excluído com sucesso!", "success")
-            else:
-                flash("Erro ao excluir evento.", "error")
+@app.route('/eventos', methods=['POST'])
+def manage_events():
+    if 'create' in request.form:
+        if create_event():
+            flash("Evento criado com sucesso!", "success")
+        else:
+            flash("Erro ao criar evento.", "error")
+    elif 'update' in request.form:
+        if update_event():
+            flash("Evento atualizado com sucesso!", "success")
+        else:
+            flash("Erro ao atualizar evento.", "error")
+    elif 'delete' in request.form:
+        if delete_event():
+            flash("Evento excluído com sucesso!", "success")
+        else:
+            flash("Erro ao excluir evento.", "error")
     
     eventos = read_eventos()
     return render_template('eventos.html', eventos=eventos)
