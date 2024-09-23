@@ -35,11 +35,11 @@ def deleteEvento(id):
     conexao.close()
 
 
-def updateEvento(nome,imagem,descricao,dias,id):
+def updateEvento(nome,descricao,dias,id):
      conexao = iniciaConexao()
      cursor = conexao.cursor()
-     comando = "UPDATE evento SET nome=%s,imagem = %s,dias = %s, descricao = %s WHERE id= %i"
-     valores = [nome,imagem,descricao,dias,id]
+     comando = "UPDATE evento SET nome=%s, dias = %s, descricao = %s WHERE id= %i"
+     valores = [nome,descricao,dias,id]
      cursor.execute(comando, valores)
      conexao.commit() # edita o banco de dados
         #resultado= cursor.fetchtall() #ler o banco de dados
@@ -58,9 +58,8 @@ def readcardapio():
     for evento in eventos:
         eventos_list.append({
             'nome': evento[1],
-            'imagem': evento[2],
-            'descricao': evento[3],
-            'dias': evento[4]
+            'descricao': evento[2],
+            'dias': evento[3]
         })
         cursor.close()
         conexao.close()

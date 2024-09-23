@@ -17,7 +17,7 @@
     <nav>
         <a class="anav" href="{{ url_for('index') }}">Página Principal</a>  
         <a class="anav" href="{{ url_for('agendamentos') }}">Agendamentos</a>
-        <a class="anav" href="{{ url_for(' fale_conosco') }}">Fale Conosco</a>
+        <a class="anav" href="{{ url_for('fale_conosco') }}">Fale Conosco</a>
         <a class="pagi" href="{{ url_for('eventos') }}">Eventos</a>
     </nav>
 </header>
@@ -35,7 +35,6 @@
         <h2>Criar Evento</h2>
         <button id="close-create-form-btn">Fechar</button>
         <input type="text" name="nome" placeholder="Nome" required>
-        <input type="file" name="imagem" placeholder="Imagem URL" required>
         <textarea name="descricao" placeholder="Descrição" required></textarea>
         <input type="date" name="dias" placeholder="Dias" required>
         <button type="submit" name="create">Criar Evento</button>
@@ -49,14 +48,12 @@
         <ul>
             {% for evento in eventos %}
             <li>
-                <strong>{{ evento.nome }}</strong> - {{ evento.descricao }} <br>
-                <img src="{{ evento.imagem }}" alt="{{ evento.nome }}" width="100px"><br>
-                <form method="POST">
-                    <input type="hidden" name="id" value="{{ evento.id }}">
+                <strong>{{ nome }}</strong> - {{ descricao }} <br>
+                <form action="/eventos" method="POST">
+                    <input type="hidden" name="id" value="{{ id }}">
                     <input type="text" name="nome" placeholder="Novo Nome" required>
-                    <input type="file" name="imagem" placeholder="Nova Imagem URL" required>
                     <textarea name="descricao" placeholder="Nova Descrição" required></textarea>
-                    <input type="text" name="dias" placeholder="Novos Dias" required>
+                    <input type="date" name="dias" placeholder="Novos Dias" required>
                     <button type="submit" name="update">Atualizar Evento</button>
                     <button type="submit" name="delete">Excluir Evento</button>
                 </form>
