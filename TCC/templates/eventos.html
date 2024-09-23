@@ -48,14 +48,17 @@
         <ul>
             {% for evento in eventos %}
             <li>
-                <strong>{{ nome }}</strong> - {{ descricao }} <br>
-                <form action="/eventos" method="POST">
-                    <input type="hidden" name="id" value="{{ id }}">
+                <strong>{{ evento[1] }}</strong> - {{ evento[2] }} <br>
+                <form action="/eventos" method="POST" style="display: inline;">
+                    <input type="hidden" name="id" value="{{ evento[0] }}">
+                    <button type="submit" name="delete">Excluir Evento</button>
+                </form>
+                <form action="/eventos" method="POST" style="display: inline;">
+                    <input type="hidden" name="id" value="{{ evento[0] }}">
                     <input type="text" name="nome" placeholder="Novo Nome" required>
                     <textarea name="descricao" placeholder="Nova Descrição" required></textarea>
                     <input type="date" name="dias" placeholder="Novos Dias" required>
                     <button type="submit" name="update">Atualizar Evento</button>
-                    <button type="submit" name="delete">Excluir Evento</button>
                 </form>
             </li>
             {% endfor %}
