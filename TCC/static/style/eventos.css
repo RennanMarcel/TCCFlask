@@ -109,7 +109,6 @@ button:hover{
 }
 h1{
     align-self: center;
-    margin-left: 25px;
 }
 .modelo{
     margin-top: -70px;
@@ -122,9 +121,38 @@ h1{
 .btns{
     display: flex;
 }
-.modelo div{
+.divmodelo{
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    border-radius: 20px;
+    box-shadow: 4px 5px 4px rgb(40, 62, 52) ; 
     margin-top: 20px;
     background-color:#46675b;
     width: 300px;
     height: 450px;
+}
+.modelo div h2{
+    color: white;
+    display: flex;
+    margin-top: 10px;
+}
+.modelo div img{
+    width: 200px;
+    height: 200px;
+}
+.divimg{
+    border-radius: 20px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: #23473b;
+    width: 250px;
+    height: 250px;
+}
+.divp{
+    color: white;
+    padding: 10px;
+    font-size: medium;
 }
