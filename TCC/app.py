@@ -11,6 +11,10 @@ app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'supersecretkey')
 UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+@app.route('/eventosadm')
+def eventos():
+    return render_template('eventosadm.html')
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -23,8 +27,8 @@ def fale_conosco():
 def agendamentos():
     return render_template('agendamentos.html')
 
-@app.route('/eventos', methods=['GET', 'POST'])
-def eventos():
+@app.route('/eventosadm', methods=['GET', 'POST'])
+def eventosadm():
     if request.method == 'POST':
         if 'create' in request.form:
             if create_event():
@@ -43,7 +47,7 @@ def eventos():
                 flash("Erro ao excluir evento.", "error")
 
     eventos = read_eventos()
-    return render_template('eventos.html', eventos=eventos)
+    return render_template('eventosadm.html', eventos=eventos)
 
 @app.route('/instagram')
 def instagram():
@@ -57,7 +61,7 @@ def login():
         
         if login == "CSCJL1" and senha == "cscjl":
             session['loginStatus'] = True
-            return redirect(url_for('eventos'))
+            return redirect(url_for('eventosadm'))
         else:
             flash("Login ou senha inválidos.", "error")
             return redirect(url_for('login'))

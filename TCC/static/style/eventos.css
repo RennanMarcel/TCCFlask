@@ -4,6 +4,7 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     text-decoration:none;
 }
 a{
@@ -18,6 +19,7 @@ body{
 }
 main{
     padding: 25px;
+    flex-direction: column;
     display: flex;
     margin-bottom: 48px;
     border-top: 0.4px solid ;
@@ -85,76 +87,4 @@ header nav a{
     font-weight: 400;
     font-size: 18px;
     color: #ecd6c4;
-}
-.SectionButtons{
-    justify-content: space-around;
-    width: 509px;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-}
-.SectionButtons button{
-    margin-left: 20px;
-    margin-top: 20px;
-    cursor: pointer;
-        background-color: rgb(118, 199, 140);
-        width: 200px;
-        height: 75px;
-        border: none;
-        box-shadow: 4px 5px 4px rgb(66, 100, 84) ; 
-        border-radius: 20px;
-        font-family: 'sarala', sans-serif;
-        font-weight: 400;
-        font-size: 20px;
-        color: white;
-}
-.SectionButtons button:hover{
-    background-color: rgb(54, 132, 75);
-    width: 195px;
-    height: 70px;
-}
-.create-event-btn{
-    margin-bottom: 90px;
-}
-.create-event-form{
-    padding: 10px;
-    flex-direction: column;
-    display: flex;
-}
-.SectionForm{
-    display: flex;
-    padding-top: 30px;
-    padding-left: 30px;
-}
-.create-event-form-div{
-    padding: 10px;
-    flex-direction: column;
-    align-items: center;
-    display: flex;
-    border-radius: 20px;
-    box-shadow: 4px 5px 4px rgb(40, 62, 52) ; 
-    margin-top: 20px;
-    background-color:#46675b;
-    width: 300px;
-    height: 460px;
-}
-.nome{
-    display: flex;
-    max-width: 300px;
-    font-size: xx-large;
-    text-align: center;
-    height: 50px;
-    background: none;
-    margin-bottom: 20px;
-}
-.data{
-    font-size: larger;
-    justify-content: center;
-    align-items: center;
-    background: none;
-    height: 30px;
-    align-self: center;
-    display: flex;
-    margin-bottom: 20px;
-    width: 200px;
 }

@@ -17,83 +17,13 @@
     <nav>
         <a class="anav" href="{{ url_for('index') }}">Página Principal</a>  
         <a class="anav" href="{{ url_for('agendamentos') }}">Agendamentos</a>
-        <a class="anav" href="{{ url_for('fale_conosco') }}">Fale Conosco</a>
+        <a class="anav" href="{{ url_for('eventos') }}">Fale Conosco</a>
         <a class="pagi" href="{{ url_for('eventos') }}">Eventos</a>
     </nav>
 </header>
 
 <main>
-
-    <section class="SectionButtons">
-        <button id="create-event-btn" class="create-event-btn">Criar novo evento</button>
-
-        <button id="verify-events-btn" class="verify-events-btn">Verificar eventos</button>
-    </section>
-        <section class="SectionForm">
-
-            <div class="create-event-form-div" id="create-event-form-div" style="display: none;">
-            <form id="create-event-form" method="POST" enctype="multipart/form-data" style="display: none;" class="create-event-form">
-                <input class="nome" type="text" name="nome" placeholder="Nome" required>
-                <input class="data"  type="date" name="dia" placeholder="Dia" required>
-                <textarea class="descricao"  name="descricao" placeholder="Descrição" required></textarea>
-                <label for="imagem">Escolha uma imagem:</label>
-                <input type="file" name="imagem" accept="image/*" required>
-                <button type="submit" name="create">Criar Evento</button>
-                <button id="close-create-form-btn" class="close-create-form-btn">Fechar</button>
-
-            </form>
-            </div>
-
-        <div id="events-list" style="display: none;">
-            <h2>Eventos Cadastrados</h2>
-            <button id="close-events-btn">Fechar</button>
-            <ul>
-                {% for evento in eventos %}
-                <li>
-                    <strong>{{ evento[1] }}</strong> - {{ evento[2] }} <br>
-                    <img src="{{ evento[4] }}" alt="{{ evento[1] }}" width="100px">
-                    <form action="/eventos" method="POST" style="display: inline;" enctype="multipart/form-data">
-                        <input type="hidden" name="id" value="{{ evento[0] }}">
-                        <button type="submit" name="delete">Excluir Evento</button>
-                    </form>
-                    <form action="/eventos" method="POST" style="display: inline;" enctype="multipart/form-data">
-                        <input type="hidden" name="id" value="{{ evento[0] }}">
-                        <input type="text" name="nome" placeholder="Novo Nome" required>
-                        <textarea name="descricao" placeholder="Nova Descrição" required></textarea>
-                        <input type="date" name="dia" placeholder="Novos Dias" required>
-                        
-                        <label for="imagem">Atualizar Imagem:</label>
-                        <input type="file" name="imagem" accept="image/*">
-                        
-                        <button type="submit" name="update">Atualizar Evento</button>
-                    </form>
-                </li>
-                {% endfor %}
-            </ul>
-            
-        </div>
-        <script>
-            document.getElementById('create-event-btn').addEventListener('click', function() {
-                document.getElementById('create-event-form').style.display = '';
-            });
-            document.getElementById('create-event-btn').addEventListener('click', function() {
-                document.getElementById('create-event-form-div').style.display = '';
-            })
-    
-            document.getElementById('verify-events-btn').addEventListener('click', function() {
-                document.getElementById('events-list').style.display = '';
-            });
-    
-            document.getElementById('close-events-btn').addEventListener('click', function() {
-                document.getElementById('events-list').style.display = 'none';
-            });
-    
-            document.getElementById('close-create-form-btn').addEventListener('click', function() {
-                document.getElementById('create-event-form').style.display = 'none';
-            });
-        </script>
-    </section>
-
+    <h1>Eventos</h1>
 </main>
 
 <footer>
