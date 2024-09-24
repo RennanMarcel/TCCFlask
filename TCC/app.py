@@ -2,9 +2,14 @@ from flask import Flask, render_template, redirect, request, url_for, session, f
 import mysql.connector
 from mysql.connector import ClientFlag, Error
 import os
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'supersecretkey')
+
+# Configuração do diretório de upload de imagens
+UPLOAD_FOLDER = 'static/uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
@@ -64,7 +69,7 @@ def iniciaConexao():
             host=os.environ.get('DB_HOST', '127.0.0.1'),
             user=os.environ.get('DB_USER', 'root'),
             password=os.environ.get('DB_PASSWORD', 'P@ssAlun0'),
-            database=os.environ.get('DB_NAME', 'protasete'),
+            database=os.environ.get('DB_NAME', 'CSCJL'),
             client_flags=[ClientFlag.PLUGIN_AUTH]
         )
         return conexaoBanco
@@ -75,17 +80,22 @@ def iniciaConexao():
 def create_event():
     nome = request.form.get('nome')
     descricao = request.form.get('descricao')
-    dias = request.form.get('dias')
+    dia = request.form.get('dia')
+    imagem = request.files.get('imagem')
 
-    if not nome or not descricao or not dias:
+    if not nome or not descricao or not dia or not imagem:
         return False
+
+    filename = secure_filename(imagem.filename)
+    image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    imagem.save(image_path)
 
     conexao = iniciaConexao()
     if conexao:
         try:
             cursor = conexao.cursor()
-            comando = "INSERT INTO Evento (nome, descricao, dias) VALUES (%s, %s, %s)"
-            cursor.execute(comando, (nome, descricao, dias))
+            comando = "INSERT INTO Evento (nome, descricao, dia, imagem) VALUES (%s, %s, %s, %s)"
+            cursor.execute(comando, (nome, descricao, dia, image_path))
             conexao.commit()
             return True
         except Error as err:
@@ -122,17 +132,31 @@ def update_event():
     id = request.form.get('id')
     nome = request.form.get('nome')
     descricao = request.form.get('descricao')
-    dias = request.form.get('dias')
+    dia = request.form.get('dia')
+    imagem = request.files.get('imagem')
 
-    if not id or not nome or not descricao or not dias:
+    if not id or not nome or not descricao or not dia:
         return False
 
     conexao = iniciaConexao()
     if conexao:
         try:
             cursor = conexao.cursor()
-            comando = "UPDATE Evento SET nome=%s, descricao=%s, dias=%s WHERE id=%s"
-            cursor.execute(comando, (nome, descricao, dias, id))
+
+            # Verifica se uma nova imagem foi enviada
+            if imagem and imagem.filename != '':
+                filename = secure_filename(imagem.filename)
+                image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                imagem.save(image_path)
+
+                # Atualiza evento com nova imagem
+                comando = "UPDATE Evento SET nome=%s, descricao=%s, dia=%s, imagem=%s WHERE id=%s"
+                cursor.execute(comando, (nome, descricao, dia, image_path, id))
+            else:
+                # Atualiza evento sem modificar a imagem
+                comando = "UPDATE Evento SET nome=%s, descricao=%s, dia=%s WHERE id=%s"
+                cursor.execute(comando, (nome, descricao, dia, id))
+
             conexao.commit()
             return True
         except Error as err:

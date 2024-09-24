@@ -23,86 +23,77 @@
 </header>
 
 <main>
-    <h1>Eventos</h1>
 
-    {% if message %}
-        <p>{{ message }}</p>
-    {% endif %}
+    <section class="SectionButtons">
+        <button id="create-event-btn" class="create-event-btn">Criar novo evento</button>
 
-    <div class="btns">
-    <button id="create-event-btn">Criar novo evento</button>
-
-    <button id="verify-events-btn">Verificar eventos</button>
-    </div>
-
-    <form id="create-event-form" method="POST" style="display: none;">
-        <h2>Criar Evento</h2>
-        <button id="close-create-form-btn">Fechar</button>
-        <input type="text" name="nome" placeholder="Nome" required>
-        <textarea name="descricao" placeholder="Descrição" required></textarea>
-        <input type="date" name="dias" placeholder="Dias" required>
-        <button type="submit" name="create">Criar Evento</button>
-    </form>
-
-
-    <section id="events-list" style="display: none;">
-        <h2>Eventos Cadastrados</h2>
-        <button id="close-events-btn">Fechar</button>
-        <ul>
-            {% for evento in eventos %}
-            <li>
-                <strong>{{ evento[1] }}</strong> - {{ evento[2] }} <br>
-                <form action="/eventos" method="POST" style="display: inline;">
-                    <input type="hidden" name="id" value="{{ evento[0] }}">
-                    <button type="submit" name="delete">Excluir Evento</button>
-                </form>
-                <form action="/eventos" method="POST" style="display: inline;">
-                    <input type="hidden" name="id" value="{{ evento[0] }}">
-                    <input type="text" name="nome" placeholder="Novo Nome" required>
-                    <textarea name="descricao" placeholder="Nova Descrição" required></textarea>
-                    <input type="date" name="dias" placeholder="Novos Dias" required>
-                    <button type="submit" name="update">Atualizar Evento</button>
-                </form>
-            </li>
-            {% endfor %}
-        </ul>
+        <button id="verify-events-btn" class="verify-events-btn">Verificar eventos</button>
     </section>
-    <section>
-    <script>
-        document.getElementById('create-event-btn').addEventListener('click', function() {
-            document.getElementById('create-event-form').style.display = 'block';
-        });
+        <section class="SectionForm">
 
-        document.getElementById('verify-events-btn').addEventListener('click', function() {
-            document.getElementById('events-list').style.display = 'block';
-        });
+            <div class="create-event-form-div" id="create-event-form-div" style="display: none;">
+            <form id="create-event-form" method="POST" enctype="multipart/form-data" style="display: none;" class="create-event-form">
+                <input class="nome" type="text" name="nome" placeholder="Nome" required>
+                <input class="data"  type="date" name="dia" placeholder="Dia" required>
+                <textarea class="descricao"  name="descricao" placeholder="Descrição" required></textarea>
+                <label for="imagem">Escolha uma imagem:</label>
+                <input type="file" name="imagem" accept="image/*" required>
+                <button type="submit" name="create">Criar Evento</button>
+                <button id="close-create-form-btn" class="close-create-form-btn">Fechar</button>
 
-        document.getElementById('close-events-btn').addEventListener('click', function() {
-            document.getElementById('events-list').style.display = 'none';
-        });
+            </form>
+            </div>
 
-        document.getElementById('close-create-form-btn').addEventListener('click', function() {
-            document.getElementById('create-event-form').style.display = 'none';
-        });
-    </script>
-</section>
-    <section class="modelo">
-        <p>
-            Modelo de como ficará o evento:
-        </p>
-        <div class="divmodelo">
-            <h2>
-                Evento 1 - 12/08
-            </h2>
-            <div class="divimg">
-            <img src="{{ url_for('static', filename='banco-de-imagens/eventos.jfif') }}" alt="Centro Social Comunitário Junior Letal" width="100px">
-            </div> 
-            <div class="divp"> 
-            <p>Descrição:</p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. dummy text of the printing and typesetting industry</p>  
+        <div id="events-list" style="display: none;">
+            <h2>Eventos Cadastrados</h2>
+            <button id="close-events-btn">Fechar</button>
+            <ul>
+                {% for evento in eventos %}
+                <li>
+                    <strong>{{ evento[1] }}</strong> - {{ evento[2] }} <br>
+                    <img src="{{ evento[4] }}" alt="{{ evento[1] }}" width="100px">
+                    <form action="/eventos" method="POST" style="display: inline;" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="{{ evento[0] }}">
+                        <button type="submit" name="delete">Excluir Evento</button>
+                    </form>
+                    <form action="/eventos" method="POST" style="display: inline;" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="{{ evento[0] }}">
+                        <input type="text" name="nome" placeholder="Novo Nome" required>
+                        <textarea name="descricao" placeholder="Nova Descrição" required></textarea>
+                        <input type="date" name="dia" placeholder="Novos Dias" required>
+                        
+                        <label for="imagem">Atualizar Imagem:</label>
+                        <input type="file" name="imagem" accept="image/*">
+                        
+                        <button type="submit" name="update">Atualizar Evento</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+            
         </div>
-    </div>
+        <script>
+            document.getElementById('create-event-btn').addEventListener('click', function() {
+                document.getElementById('create-event-form').style.display = '';
+            });
+            document.getElementById('create-event-btn').addEventListener('click', function() {
+                document.getElementById('create-event-form-div').style.display = '';
+            })
+    
+            document.getElementById('verify-events-btn').addEventListener('click', function() {
+                document.getElementById('events-list').style.display = '';
+            });
+    
+            document.getElementById('close-events-btn').addEventListener('click', function() {
+                document.getElementById('events-list').style.display = 'none';
+            });
+    
+            document.getElementById('close-create-form-btn').addEventListener('click', function() {
+                document.getElementById('create-event-form').style.display = 'none';
+            });
+        </script>
     </section>
+
 </main>
 
 <footer>
